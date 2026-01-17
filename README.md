@@ -92,18 +92,9 @@ These visuals are suitable for stakeholder presentations and executive summaries
 ├── analysis.ipynb
 └── README.md
 
-
 ---
 
-## Next Steps
-
-Potential extensions of this analysis include:
-- Cohort-based retention analysis
-- A dashboard (Power BI / Tableau) tracking MAU, churn rate, and QRIS adoption
-- Sensitivity testing with alternative churn definitions
-- Deeper segmentation by merchant category or transaction context
-
----
-
-**Author:** Laksa Fadhil Yansen  
-Data Analytics · Data Visualization
+## Author
+**Laksa Fadhil Yansen**  
+Data Analyst | Data Science
+Python • SQL • R • Data Analytics & Visualization
