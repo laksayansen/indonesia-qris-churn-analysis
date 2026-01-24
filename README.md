@@ -1,8 +1,12 @@
 # Indonesia QRIS Payment Behavior & Churn Analysis
 
-This project analyzes user behavior and churn patterns in a digital payment ecosystem, framed within the context of Indonesia’s QRIS (Quick Response Code Indonesian Standard) payment infrastructure.
+This repo contains an end-to-end analytics project that analyzes user behavior and churn patterns in a digital payment ecosystem, framed within the context of Indonesia’s QRIS (Quick Response Code Indonesian Standard) payment infrastructure.
 
-Using transaction-level data, the analysis examines how different payment rails—QRIS-based payments versus non-QRIS card payments—relate to user engagement, transaction value, and behavioral churn. The goal is to demonstrate end-to-end analytical thinking, from data preparation to business insight generation.
+Using transaction-level data, the analysis examines how different payment rails—QRIS-based payments versus non-QRIS card payments—relate to user engagement, transaction value, and behavioral churn.
+
+This project is structured into two stages:
+- **Python Analysis:** Exploratory analysis and churn modeling using transaction-level data.
+- **Tableau Dashboard:** An interactive dashboard translating the same metrics into a stakeholder-facing BI tool.
 
 ---
 
@@ -21,13 +25,26 @@ This recoding is used as an analytical proxy to compare behavioral patterns acro
 
 ---
 
+## Dataset
+
+- Unit of analysis: **1 row = 1 transaction**
+- Key fields used:
+  - `transaction_date`
+  - `user_id`
+  - `transaction_id`
+  - `product_amount`
+  - `payment_category`
+  - `is_churned` (0/1)
+
+---
+
 ## Churn Definition
 
-This is a non-subscription payment context, so churn is defined behaviorally:
+This project uses **behavioral churn** (no explicit cancellation event).
 
-> **A user is considered churned if they have no transactions within the final 90 days of the observation window.**
+A user is labeled **churned** if they have **no transactions in the final 90 days of the observation window**.
 
-This approach is commonly used in fintech and e-commerce analytics where explicit cancellations do not exist.
+> Note: This makes the churn KPI an **overall/lifetime churn** metric (not monthly subscription churn).
 
 ---
 
@@ -55,24 +72,57 @@ This approach is commonly used in fintech and e-commerce analytics where explici
 
 ---
 
+## Tableau Dashboard
+
+The dashboard answers the core business question:
+
+**“How is the payment ecosystem performing, and where is churn risk coming from?”**
+
+### KPI Overview
+- Monthly Active Users (Latest Month)
+- Total Transactions (Latest Month)
+- Total Transaction Value (Latest Month)
+- Overall Churn Rate (Lifetime)
+
+### Trends
+- Monthly Active Users (MAU) trend (complete months only)
+- Churn share trend (share of activity coming from users who eventually churn)
+
+### Breakdowns
+- Active users by payment category
+- Churn rate by payment category
+
+### Churn Interpretation Note
+
+Churn is defined based on future inactivity. As a result, recent months may show lower churn share because users who have already churned no longer generate transactions. This behavior is expected and reflects the limitations of transaction-based churn inference.
+
+**Dashboard Preview:**
+
+![Dashboard](dashboards/screenshots/dashboard.png)
+
+---
+
+## Metric Definitions (Tableau)
+
+- **Total Transactions:** `COUNT([transaction_id])`
+- **Total Value:** `SUM([product_amount_num])`
+- **Active Users:** `COUNTD([user_id])`
+- **Overall Churn Rate:** `AVG([is_churned])`
+
+Monthly:
+- **Month:** `DATETRUNC('month', [transaction_date])`
+- **MAU:** `COUNTD([user_id])` by Month
+- **Churn Share:** `AVG([is_churned])` by Month
+
+---
+
 ## Methods
 
 - Transaction-level exploratory data analysis using **pandas** and **matplotlib**
 - Feature engineering to map generic payment rails into QRIS-based categories
 - Behavioral churn modeling using a 90-day inactivity window
 - User-level engagement and transaction value analysis
-- Monthly trend analysis for activity and churn dynamics
-
----
-
-## Visualizations
-
-All charts are designed using a business-friendly, executive-style aesthetic:
-- Clear color semantics (e.g., higher churn highlighted distinctly)
-- Minimal visual clutter
-- Slide- and dashboard-ready formatting
-
-These visuals are suitable for stakeholder presentations and executive summaries.
+- Monthly trend analysis for activity and churn dynamics (**Tableau**)
 
 ---
 
@@ -87,14 +137,30 @@ These visuals are suitable for stakeholder presentations and executive summaries
 
 ## Repository Structure
 
+indonesia-qris-churn/
+├── analysis.ipynb                
+├── README.md
 ├── data/
-│ └── digital_wallet_transactions.csv
-├── analysis.ipynb
-└── README.md
+│   ├── raw/
+│   │   └── digital_wallet_transactions.csv
+│   └── processed/
+│       └── dashboard_data.csv     
+├── dashboard/
+│   ├── indonesia_qris_churn.twbx    
+│   └── screenshots/
+│       └── dashboard.png
 
 ---
 
-## Author
-**Laksa Fadhil Yansen**  
-Data Analyst | Data Science
-Python • SQL • R • Data Analytics & Visualization
+## Next Steps
+
+Potential extensions of this project include:
+- Cohort-based retention analysis in Python
+- Monthly churn modeling using cohort definitions
+- Deeper segmentation by merchant category
+- Integration with live data sources for automated dashboard refresh
+
+---
+
+**Author:** Laksa Fadhil Yansen  
+Data Analysis | Modeling | Visualization

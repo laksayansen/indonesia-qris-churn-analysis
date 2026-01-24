@@ -1,0 +1,13 @@
+# Mac
+.DS_Store
+
+# Python
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+env/
+*.pyc
+
+# Tableau temp / cache
+*.hyper
+*.tde
