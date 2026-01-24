@@ -137,18 +137,20 @@ Monthly:
 
 ## Repository Structure
 
+```text
 indonesia-qris-churn/
-├── analysis.ipynb                
 ├── README.md
+├── analysis.ipynb
 ├── data/
 │   ├── raw/
 │   │   └── digital_wallet_transactions.csv
 │   └── processed/
-│       └── dashboard_data.csv     
-├── dashboard/
-│   ├── indonesia_qris_churn.twbx    
-│   └── screenshots/
-│       └── dashboard.png
+│       └── dashboard_data.csv
+└── dashboards/
+    ├── indonesia_qris_churn.twbx
+    └── screenshots/
+        └── dashboard.png
+```
 
 ---
 
