@@ -1,5 +1,8 @@
 # Indonesia QRIS Payment Behavior & Churn Analysis
 
+![Python](https://img.shields.io/badge/python-3.10-blue.svg)
+![Status](https://img.shields.io/badge/status-completed-success.svg)
+
 This repo contains an end-to-end analytics project that analyzes user behavior and churn patterns in a digital payment ecosystem, framed within the context of Indonesia’s QRIS (Quick Response Code Indonesian Standard) payment infrastructure.
 
 Using transaction-level data, the analysis examines how different payment rails (QRIS-based payments versus non-QRIS card payments) relate to user engagement, transaction value, and behavioral churn.
