@@ -169,3 +169,6 @@ Potential extensions of this project include:
 
 **Author:** Laksa Fadhil Yansen  
 Data Analysis | Modeling | Visualization
+- GitHub: [@laksayansen](https://github.com/laksayansen)
+- LinkedIn: [Laksa Fadhil Yansen](https://linkedin.com/in/laksafadhilyansen)
+- Email: laksafadhil.yansen@mail.utoronto.ca
